@@ -27,9 +27,9 @@ import java.util.concurrent.FutureTask;
  */
 public class CpuProfile {
     private final Map<List<StackTraceElement>, Long> counts;
-    private final Duration duration;
-    private final long count;
-    private final long missed;
+    public final Duration duration;
+    public final long count;
+    public final long missed;
 
     public CpuProfile(Map<List<StackTraceElement>, Long> counts, Duration duration, long count, long missed) {
         this.counts = counts;
@@ -155,7 +155,7 @@ public class CpuProfile {
      * out threads that are actually asleep.
      * See http://www.brendangregg.com/blog/2014-06-09/java-cpu-sampling-using-hprof.html
      */
-    private static boolean isRunnable(StackTraceElement elem) {
+    protected static boolean isRunnable(StackTraceElement elem) {
         return !idleClassAndMethod.contains(
                 new StringPair(elem.getClassName(), elem.getMethodName()));
     }
@@ -186,7 +186,6 @@ public class CpuProfile {
         PLEASE NOTE: I modified this code to use millisecond precision as the original code that used microsecond
         precision was incorrect. Each time it looked at the clock or slept, it was using millis under the hood.
         */
-        // FIXME: fix this crap
         if (frequency > 1000) {
             throw new RuntimeException("frequency must be < 1000");
         }
