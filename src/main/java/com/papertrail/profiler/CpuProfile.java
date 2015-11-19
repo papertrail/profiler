@@ -75,8 +75,10 @@ public class CpuProfile {
     /**
      * Write a Google pprof-compatible profile to `out`. The format is
      * documented here:
-     * <p/>
      * http://google-perftools.googlecode.com/svn/trunk/doc/cpuprofile-fileformat.html
+     *
+     * @param out And OutputStream to which the pprof output will be written
+     * @throws IOException if any operation on the OutputStream fails
      */
     public void writeGoogleProfile(OutputStream out) throws IOException {
         int next = 1;
@@ -154,6 +156,9 @@ public class CpuProfile {
      * from kernel's definition and for some well known cases, we can filter
      * out threads that are actually asleep.
      * See http://www.brendangregg.com/blog/2014-06-09/java-cpu-sampling-using-hprof.html
+     *
+     * @param elem StackTraceElement to check
+     * @return true if it's not a known idle method
      */
     protected static boolean isRunnable(StackTraceElement elem) {
         return !idleClassAndMethod.contains(
@@ -163,23 +168,23 @@ public class CpuProfile {
     /**
      * Profile CPU usage of threads in `state` for `howlong`, sampling
      * stacks at `frequency` Hz.
-     * <p/>
      * As an example, using Nyquist's sampling theorem, we see that
      * sampling at 100Hz will accurately represent components 50Hz or
      * less; ie. any stack that contributes 2% or more to the total CPU
      * time.
-     * <p/>
      * Note that the maximum sampling frequency is set to 1000Hz.
      * Anything greater than this is likely to consume considerable
      * amounts of CPU while sampling.
-     * <p/>
      * The profiler will discount its own stacks.
-     * <p/>
      * TODO:
-     * <p/>
      * - Should we synthesize GC frames? GC has significant runtime
      * impact, so it seems nonfaithful to exlude them.
      * - Limit stack depth?
+     *
+     * @param howlong Duration of profile
+     * @param frequency polling interval
+     * @param state Thread.State to match against
+     * @return CpuProfile results
      */
     public static CpuProfile record(Duration howlong, int frequency, Thread.State state) {
         /*
@@ -249,6 +254,11 @@ public class CpuProfile {
     /**
      * Call `record` in a thread with the given parameters, returning a
      * `Future` representing the completion of the profile.
+     *
+     * @param howlong Duration of profile
+     * @param frequency polling interval
+     * @param state Thread.State to match against
+     * @return Future contiaining CpuProfile results
      */
     public static Future<CpuProfile> recordInThread(final Duration howlong, final int frequency, final Thread.State state) {
         final FutureTask<CpuProfile> future = new FutureTask<>(new Callable<CpuProfile>() {
@@ -271,9 +281,10 @@ public class CpuProfile {
     /**
      * Get the main class name for the currently running application.
      * Note that this works only by heuristic, and may not be accurate.
-     * <p/>
      * TODO: take into account the standard callstack around scala
      * invocations better.
+     *
+     * @return main class name
      */
     public static String mainClassName() {
         for (Map.Entry<Thread, StackTraceElement[]> entry : Thread.getAllStackTraces().entrySet()) {
