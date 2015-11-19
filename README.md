@@ -1,6 +1,7 @@
 # JVM cpu profiler
 
-This project is a pure-java implementation of the twitter/util project's `CpuProfile` and related classes.
+A pure-java implementation of the [twitter/util](https://github.com/twitter/util) project's `CpuProfile` and related
+classes.
 
 Original Scala sources:
 
