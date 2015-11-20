@@ -42,6 +42,7 @@ public class CpuProfileTest {
         assertTrue(CpuProfile.isRunnable(newElem("foo", "bar")));
         assertFalse(CpuProfile.isRunnable(newElem("sun.nio.ch.EPollArrayWrapper", "epollWait")));
         assertFalse(CpuProfile.isRunnable(newElem("sun.nio.ch.KQueueArrayWrapper", "kevent0")));
+        assertFalse(CpuProfile.isRunnable(newElem("sun.nio.ch.ServerSocketChannelImpl", "accept0")));
     }
 
     public static StackTraceElement newElem(String className, String methodName) {
