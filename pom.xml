@@ -3,7 +3,7 @@
 
   <groupId>com.papertrail</groupId>
   <artifactId>profiler</artifactId>
-  <version>1.0.2-SNAPSHOT</version>
+  <version>1.0.2</version>
   <packaging>jar</packaging>
 
   <name>${project.groupId}:${project.artifactId}</name>
