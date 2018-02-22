@@ -1,0 +1,3 @@
+Bundle-SymbolicName: papertrail-profiler
+Import-Package: *
+Export-Package: com.papertrail.profiler
