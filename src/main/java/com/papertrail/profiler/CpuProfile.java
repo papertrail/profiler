@@ -7,6 +7,8 @@ import java.lang.management.ThreadInfo;
 import java.lang.management.ThreadMXBean;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -16,9 +18,6 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
-
-import org.joda.time.Duration;
-import org.joda.time.Instant;
 
 /**
  * A CPU profile.
@@ -265,15 +264,15 @@ public class CpuProfile
         }
       }
       n += 1;
-      next = next.plus (periodMillis);
+      next = next.plusMillis (periodMillis);
 
       while (next.isBefore (Instant.now ()) && next.isBefore (end))
       {
         nmissed += 1;
-        next = next.plus (periodMillis);
+        next = next.plusMillis (periodMillis);
       }
 
-      final long sleep = Math.max ((next.getMillis () - Instant.now ().getMillis ()), 0);
+      final long sleep = Math.max ((next.toEpochMilli () - Instant.now ().toEpochMilli ()), 0);
       try
       {
         Thread.sleep (sleep);
@@ -286,7 +285,7 @@ public class CpuProfile
       }
     }
 
-    return new CpuProfile (counts, new Duration (start, Instant.now ()), n, nmissed);
+    return new CpuProfile (counts, Duration.between (start, Instant.now ()), n, nmissed);
   }
 
   public CpuProfile record (final Duration howlong, final int frequency)

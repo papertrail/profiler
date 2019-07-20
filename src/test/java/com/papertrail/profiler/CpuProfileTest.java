@@ -7,8 +7,8 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
+import java.time.Duration;
 
-import org.joda.time.Duration;
 import org.junit.Test;
 
 /**
@@ -36,7 +36,7 @@ public class CpuProfileTest
     t.start ();
 
     // Profile for 1000ms at 10 Hz => 100ms period; produces 10 samples.
-    final CpuProfile profile = CpuProfile.record (Duration.standardSeconds (1), 10, Thread.State.TIMED_WAITING);
+    final CpuProfile profile = CpuProfile.record (Duration.ofSeconds (1), 10, Thread.State.TIMED_WAITING);
     assertNotNull (profile);
     assertEquals (10, profile.m_count);
     assertEquals (0, profile.m_missed);

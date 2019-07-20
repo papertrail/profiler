@@ -2,6 +2,7 @@ package com.papertrail.profiler.jaxrs;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -10,8 +11,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-
-import org.joda.time.Duration;
 
 import com.papertrail.profiler.CpuProfile;
 
@@ -44,7 +43,7 @@ public class CpuProfileResource
     {
       try
       {
-        final CpuProfile profile = CpuProfile.record (Duration.standardSeconds (duration), frequency, state);
+        final CpuProfile profile = CpuProfile.record (Duration.ofSeconds (duration), frequency, state);
         final ByteArrayOutputStream stream = new ByteArrayOutputStream ();
         if (profile == null)
         {
