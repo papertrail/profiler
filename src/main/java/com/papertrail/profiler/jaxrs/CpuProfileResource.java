@@ -17,7 +17,7 @@ import com.papertrail.profiler.CpuProfile;
 @Path ("/pprof")
 public class CpuProfileResource
 {
-  final Lock lock = new ReentrantLock ();
+  private final Lock lock = new ReentrantLock ();
 
   @Produces ("pprof/raw")
   @GET
@@ -41,10 +41,9 @@ public class CpuProfileResource
   {
     if (lock.tryLock ())
     {
-      try
+      try (final ByteArrayOutputStream stream = new ByteArrayOutputStream ())
       {
         final CpuProfile profile = CpuProfile.record (Duration.ofSeconds (duration), frequency, state);
-        final ByteArrayOutputStream stream = new ByteArrayOutputStream ();
         if (profile == null)
         {
           throw new RuntimeException ("could not create CpuProfile");

@@ -1,7 +1,10 @@
+This is a fork of https://github.com/papertrail/profiler/ with Java 8 support. No dependency on joda-time anymore.
+It's meant to be a drop-in replacement.
+
 # JVM cpu profiler
 
 A pure-java implementation of the [twitter/util](https://github.com/twitter/util) project's `CpuProfile` and related
-classes.
+classes. 
 
 Original Scala sources:
 
