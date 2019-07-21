@@ -1,9 +1,9 @@
-This is a fork of https://github.com/papertrail/profiler/ with Java 8 support.
+This is a fork of https://github.com/papertrail/profiler/ verison 1.0.3-SNAPSHOT
 
-* No dependency on joda-time anymore.
-* Now as OSGI bundle
+* Requires Java 8 and therefore no dependency on joda-time anymore (since v1.1.0)
+* Now as OSGI bundle (since v1.1.1)
 
-It's meant to be a drop-in replacement.
+It's meant to be a drop-in replacement using the package name as the original
 
 # JVM cpu profiler
 
@@ -41,7 +41,7 @@ pprof --pdf prof > profile.pdf
 ```xml
 <dependency>
   <groupId>com.helger</groupId>
-  <artifactId>profile</artifactId>
+  <artifactId>profiler</artifactId>
   <version>1.1.1</version>
 </dependency>
 ```
