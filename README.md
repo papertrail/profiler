@@ -1,4 +1,4 @@
-This is a fork of https://github.com/papertrail/profiler/ verison 1.0.3-SNAPSHOT
+This is a fork of https://github.com/papertrail/profiler/ version 1.0.3-SNAPSHOT
 
 * Requires Java 8 and therefore no dependency on joda-time anymore (since v1.1.0)
 * Now as OSGI bundle (since v1.1.1)
