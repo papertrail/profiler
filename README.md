@@ -3,7 +3,7 @@ This is a fork of https://github.com/papertrail/profiler/ version 1.0.3-SNAPSHOT
 * Requires Java 8 and therefore no dependency on joda-time anymore (since v1.1.0)
 * Now as OSGI bundle (since v1.1.1)
 
-It's meant to be a drop-in replacement using the package name as the original
+It's meant to be a simple replacement using the same package name as the original (just with the Java 8 `Duration` type)
 
 Original sources Copyright 2015 Papertrail, Inc.
 
