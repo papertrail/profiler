@@ -5,6 +5,8 @@ This is a fork of https://github.com/papertrail/profiler/ version 1.0.3-SNAPSHOT
 
 It's meant to be a drop-in replacement using the package name as the original
 
+Original sources Copyright 2015 Papertrail, Inc.
+
 # JVM cpu profiler
 
 A pure-java implementation of the [twitter/util](https://github.com/twitter/util) project's `CpuProfile` and related
