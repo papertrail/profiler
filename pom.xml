@@ -7,7 +7,7 @@
   </parent>
 
   <artifactId>profiler</artifactId>
-  <version>1.1.1</version>
+  <version>1.1.2-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>${project.groupId}:${project.artifactId}</name>
   <description>A pure-java implementation of the twitter/util project's `CpuProfile` and related classes.</description>
@@ -39,7 +39,7 @@
     <connection>scm:git:git@github.com:phax/profiler.git</connection>
     <developerConnection>scm:git:git@github.com:phax/profiler.git</developerConnection>
     <url>git@github.com:phax/profiler.git</url>
-    <tag>profiler-1.1.1</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <dependencies>
