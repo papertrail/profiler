@@ -193,7 +193,10 @@ public class CpuProfile {
         precision was incorrect. Each time it looked at the clock or slept, it was using millis under the hood.
         */
         if (frequency > 1000) {
-            throw new RuntimeException("frequency must be < 1000");
+            throw new IllegalArgumentException("frequency must be <= 1000");
+        }
+        if (frequency < 1) {
+            throw new IllegalArgumentException("frequency must be > 0");
         }
 
         // TODO: it may make sense to write a custom hash function here
