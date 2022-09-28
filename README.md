@@ -1,13 +1,22 @@
+This is a fork of https://github.com/papertrail/profiler/ version 1.0.3-SNAPSHOT
+
+* Requires Java 8 and therefore no dependency on joda-time anymore (since v1.1.0)
+* Now as OSGI bundle (since v1.1.1)
+
+It's meant to be a simple replacement using the same package name as the original (just with the Java 8 `Duration` type)
+
+Original sources Copyright 2015 Papertrail, Inc.
+
 # JVM cpu profiler
 
 A pure-java implementation of the [twitter/util](https://github.com/twitter/util) project's `CpuProfile` and related
-classes.
+classes. 
 
 Original Scala sources:
 
   * [CpuProfile.scala](https://github.com/twitter/util/blob/develop/util-jvm/src/main/scala/com/twitter/jvm/CpuProfile.scala)
   * [CpuProfileTest.scala](https://github.com/twitter/util/blob/develop/util-jvm/src/test/scala/com/twitter/jvm/CpuProfileTest.scala)
-  
+
 ## Usage
 
 The `CpuProfile.record` method will record samples of stacktrace elements and return a `CpuProfile` object. That object
@@ -27,4 +36,14 @@ threads. Here is an example of using `curl` to retrieve a profile and turn it in
 ```bash
 curl http://localhost:8181/pprof/contention > prof
 pprof --pdf prof > profile.pdf
+```
+
+## Maven usage
+
+```xml
+<dependency>
+  <groupId>com.helger</groupId>
+  <artifactId>profiler</artifactId>
+  <version>1.1.1</version>
+</dependency>
 ```
